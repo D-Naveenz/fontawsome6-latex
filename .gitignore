@@ -487,8 +487,11 @@ pyrightconfig.json
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
-## Font resource folders
-fontawesome/
+## Font resources
+fontawesome/*
 
 ## All the contents in output folder
 output/
+
+## Exclude readme files in excluded folders
+!**/README.md
