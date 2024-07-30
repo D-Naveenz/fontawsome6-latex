@@ -1,0 +1,55 @@
+%% Identify this package.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fontawesome6}[2024/07/29 v1.0.1 font awesome icons]
+
+%% Requirements to use.
+\RequirePackage{fontspec}
+
+%% Configure a directory location for fonts(default: 'fonts/')
+\newcommand*{\fontdir}[1][fonts/]{\def\@fontdir{#1}}
+\fontdir % Set the default font directory
+
+%% Define pro option
+\DeclareOption{pro}{
+  %% Define shortcut to load the Font Awesome pro font.
+  \newfontfamily\FA[
+    Path=\@fontdir,
+    UprightFont=*-Regular-400,
+    ItalicFont=*-Light-300,
+    BoldFont=*-Solid-900,
+  ]{Font Awesome 6 Pro}
+}
+
+\ProcessOptions\relax
+
+%% Define shortcut to load the Font Awesome font for brands.
+\newfontfamily{\FAbrands}[Path=\@fontdir]{Font Awesome 6 Brands-Regular-400}
+
+%% Define shortcut to load the Font Awesome font.
+\@ifundefined{FA}{%
+\newfontfamily\FA[
+  Path=\@fontdir,
+  UprightFont=*-Regular-400,
+  BoldFont=*-Solid-900,
+]{Font Awesome 6 Free}
+}{}
+
+%% Generic command displaying an icon by its name.
+\newcommand{\faIcon}[1]{%
+  \ifcsname fa@#1\endcsname
+    \csname fa@#1\endcsname
+  \else
+    \textbf{[Unknown Icon: #1]}
+  \fi
+}
+
+%% Using this command, you can define a new icon.
+%% Example: \faDefineIcon{food}{\symbol{"1F35D}} % U+1F35D: Spaghetti
+\newcommand{\faDefineIcon}[2]{%
+  \expandafter\def\csname fa@#1\endcsname{#2}%
+}
+
+
+%% Definitions of the icons go here.
+
+% \endinput
