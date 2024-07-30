@@ -12,8 +12,8 @@ import shutil
 
 # download zip file from https://fontawesome.com/download and extract into fontawesome directory.
 SOURCE_DIR = 'fontawesome'
-OUTPUT_DIR = 'output'
-OUTPUT_FILE = 'fontawesome6.sty'
+OUTPUT_DIR = 'output\\fontawesome'
+OUTPUT_FILE = '6.sty'
 
 
 # Read the icons.json file in the metadata folder
@@ -26,7 +26,7 @@ def get_icons_metadata() -> dict:
 
 # Read the header latex style file
 def get_tex_header() -> str:
-    input_file = 'fontawesome6.header.sty'
+    input_file = 'header.sty'
     with open(input_file) as header:
         return header.read()
 
@@ -35,7 +35,7 @@ def create_icons(metadata: dict) -> str:
     result = ''
     # Example: \faDefineIcon{apple}{\FABrands\symbol{"F179}} % U+F179: Apple
     output_template = \
-        r'\faDefineIcon{{{name}}}{{{font}\symbol{{"{symbol}"}}}} % U+{symbol_filled}: {label}{term}'
+        r'\faDefineIcon{{{name}}}{{{font}\symbol{{"{symbol}}}}} % U+{symbol}: {label}{term}'
     for icon_name in sorted(metadata.keys()):
         font = r"\FA" if "brands" not in metadata[icon_name]["styles"] else r"\FABrands"
         unicode = metadata[icon_name]["unicode"].upper()
@@ -49,8 +49,7 @@ def create_icons(metadata: dict) -> str:
         output_line = output_template.format(
             name=icon_name,
             font=font,
-            symbol=unicode,
-            symbol_filled=unicode.zfill(4),
+            symbol=unicode.zfill(4),
             label=label,
             term=term
         )
