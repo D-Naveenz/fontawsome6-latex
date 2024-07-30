@@ -1,0 +1,1 @@
+# fontawsome6-latex
