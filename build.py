@@ -9,14 +9,14 @@ of this license or (at your option) any later version.
 Additionally, this derived work is licensed under the MIT License.
 See LICENSE file in the root directory for more information.
 """
-
+import glob
 import os
 import json
+import shutil
 
 # download zip file from https://fontawesome.com/download and extract into fontawesome directory.
 SOURCE_DIR = 'fontawesome'
 OUTPUT_DIR = 'output'
-
 OUTPUT_FILE = 'fontawesome6.sty'
 
 
@@ -77,6 +77,22 @@ def build_style():
         style.write(r'\endinput')
 
 
+def output_fonts():
+    files = glob.glob(os.path.join(SOURCE_DIR, 'otfs') + '\\Font Awesome 6 *')
+    for file in files:
+        # Copy OTF fonts to the output folder
+        name = os.path.basename(file)
+        shutil.copy2(file, os.path.join(OUTPUT_DIR, 'fonts'))
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    # Clear the output folder
+    shutil.rmtree(OUTPUT_DIR, ignore_errors=True)
+
+    # Create output folders
+    os.makedirs(os.path.join(OUTPUT_DIR, 'fonts'), exist_ok=True)
+
+    # Build the fontawesome6.sty file
     build_style()
+    output_fonts()
