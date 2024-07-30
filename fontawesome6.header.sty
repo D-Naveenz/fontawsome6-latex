@@ -23,7 +23,7 @@
 \ProcessOptions\relax
 
 %% Define shortcut to load the Font Awesome font for brands.
-\newfontfamily{\FAbrands}[Path=\@fontdir]{Font Awesome 6 Brands-Regular-400}
+\newfontfamily{\FABrands}[Path=\@fontdir]{Font Awesome 6 Brands-Regular-400}
 
 %% Define shortcut to load the Font Awesome font.
 \@ifundefined{FA}{%
@@ -44,12 +44,10 @@
 }
 
 %% Using this command, you can define a new icon.
-%% Example: \faDefineIcon{food}{\symbol{"1F35D}} % U+1F35D: Spaghetti
+%% Example: \faDefineIcon{apple}{\FABrands\symbol{"F179}} % U+F179: Apple
 \newcommand{\faDefineIcon}[2]{%
   \expandafter\def\csname fa@#1\endcsname{#2}%
 }
 
 
 %% Definitions of the icons go here.
-
-% \endinput
