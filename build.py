@@ -3,7 +3,7 @@ Fontawesome 6 package build script - v1.0.1
 Naveen Dharmathunga (dasheenaveen@outlook.com)
 ================================================================================
 This work is licensed under the MIT License.
-See LICENSE file in the root directory for more information.
+See LICENSE.txt file in the root directory for more information.
 """
 import glob
 import os
@@ -99,7 +99,9 @@ def copy_other():
     # Copy files in the root directory
     try:
         shutil.copy2('README.md', OUTPUT_DIR)
-        print(f'Copied README.md to {OUTPUT_DIR}')
+        print(f'Copied readme to {OUTPUT_DIR}')
+        shutil.copy2('LICENSE.txt', OUTPUT_DIR)
+        print(f'Copied license to {OUTPUT_DIR}')
     except PermissionError as e:
         print(f"Failed to copy README.md, Stacktrace: {e}")
 
@@ -123,3 +125,5 @@ if __name__ == '__main__':
     # Copy other files
     print("Copying files...")
     copy_other()
+
+    print("Successfully built fontawesome 6 package.")
