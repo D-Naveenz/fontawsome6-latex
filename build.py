@@ -2,11 +2,7 @@
 Fontawesome 6 package build script - v1.0.1
 Naveen Dharmathunga (dasheenaveen@outlook.com)
 ================================================================================
-It may be distributed and/or modified under the
-conditions of the LaTeX Project Public License, either version 1.3
-of this license or (at your option) any later version.
-================================================================================
-Additionally, this derived work is licensed under the MIT License.
+This work is licensed under the MIT License.
 See LICENSE file in the root directory for more information.
 """
 import glob
@@ -77,22 +73,53 @@ def build_style():
         style.write(r'\endinput')
 
 
-def output_fonts():
+def copy_other():
+    # Copy fonts
     files = glob.glob(os.path.join(SOURCE_DIR, 'otfs') + '\\Font Awesome 6 *')
+    output_dir = os.path.join(OUTPUT_DIR, 'fonts')
     for file in files:
-        # Copy OTF fonts to the output folder
-        name = os.path.basename(file)
-        shutil.copy2(file, os.path.join(OUTPUT_DIR, 'fonts'))
+        filename = os.path.basename(file)
+        try:
+            shutil.copy2(file, output_dir)
+            print(f'Copied {filename} to {output_dir}')
+        except PermissionError as e:
+            print(f"Failed to copy file: {filename}, Stacktrace: {e}")
+
+    # Copy licenses
+    files = glob.glob('licenses\\*')
+    output_dir = os.path.join(OUTPUT_DIR, 'licenses')
+    for file in files:
+        filename = os.path.basename(file)
+        try:
+            shutil.copy2(file, output_dir)
+            print(f'Copied {filename} to {output_dir}')
+        except PermissionError as e:
+            print(f"Failed to copy file: {filename}, Stacktrace: {e}")
+
+    # Copy files in the root directory
+    try:
+        shutil.copy2('README.md', OUTPUT_DIR)
+        print(f'Copied README.md to {OUTPUT_DIR}')
+    except PermissionError as e:
+        print(f"Failed to copy README.md, Stacktrace: {e}")
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    print("==== Fontawesome 6 build script ====")
     # Clear the output folder
     shutil.rmtree(OUTPUT_DIR, ignore_errors=True)
 
     # Create output folders
     os.makedirs(os.path.join(OUTPUT_DIR, 'fonts'), exist_ok=True)
+    os.makedirs(os.path.join(OUTPUT_DIR, 'licenses'), exist_ok=True)
+
+    print("Cleaned the output directory.")
 
     # Build the fontawesome6.sty file
+    print("Building fontawesome 6 package...")
     build_style()
-    output_fonts()
+
+    # Copy other files
+    print("Copying files...")
+    copy_other()
