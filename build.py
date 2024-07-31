@@ -35,7 +35,7 @@ def create_icons(metadata: dict) -> str:
     result = ''
     # Example: \faDefineIcon{apple}{\FABrands\symbol{"F179}} % U+F179: Apple
     output_template = \
-        r'\faDefineIcon{{{name}}}{{{font}\symbol{{"{symbol}}}}} % U+{symbol}: {label}{term}'
+        r'\faDefineIcon{{{name}}}{{{font}{{\symbol{{"{symbol}}}}}}} % U+{symbol}: {label}{term}'
     for icon_name in sorted(metadata.keys()):
         font = r"\FA" if "brands" not in metadata[icon_name]["styles"] else r"\FABrands"
         unicode = metadata[icon_name]["unicode"].upper()

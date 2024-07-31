@@ -87,7 +87,7 @@ This project is a build script for generating a LaTeX package for FontAwesome 6 
 ## Prerequisites
 
 * You must have the FontAwesome font on your machine (download from [here](https://fontawesome.com/)).
-* You must be using XeLaTeX and have the `fontspec` package installed.
+* You must be using XeLaTeX or LuaLaTeX and have the `fontspec` package installed.
 * You can use this package with the free and the pro fonts.
 * For using the pro features, you need to buy [Font Awesome Pro](https://fontawesome.com/pro).
 
