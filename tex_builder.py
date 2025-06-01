@@ -99,12 +99,12 @@ class TexBuilder:
         # Join all icons into a single string
         return '\n'.join(icons)
         
-    def create_tex_package(self, tex_file='document.sty'):
+    def create_tex_package(self, tex_file=OUTPUT_FILE):
         """
         Create a LaTeX package file for Font Awesome icons.
 
         Args:
-            tex_file (str, optional): The name of the LaTeX package file. Defaults to 'document.sty'.
+            tex_file (str, optional): The name of the LaTeX package file. Defaults to 'fontawesome6.sty'.
         """
         # Ensure the tex file has ".sty" extension
         if not tex_file.endswith('.sty'):
