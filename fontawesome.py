@@ -7,7 +7,7 @@ from tex_builder import TexBuilder
 from web_page import WebPage
 
 
-class FontAwesome6:
+class FontAwesome:
     FONTAWESOME_URL = 'https://fontawesome.com/download' # URL to download FontAwesome Web Page
     LINK_PATTERN = r'fontawesome-(\w+)-(\d+\.\d+\.\d+)-desktop\.zip'
     
