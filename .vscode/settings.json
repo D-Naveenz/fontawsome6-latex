@@ -1,0 +1,8 @@
+{
+    "python.terminal.shellIntegration.enabled": true,
+    "python.analysis.autoFormatStrings": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+}
