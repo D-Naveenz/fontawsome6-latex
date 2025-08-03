@@ -7,7 +7,7 @@ from tex_builder import TexBuilder
 from web_page import WebPage
 
 
-class FontAwesome6:
+class FontAwesome:
     FONTAWESOME_URL = 'https://fontawesome.com/download' # URL to download FontAwesome Web Page
     LINK_PATTERN = r'fontawesome-(\w+)-(\d+\.\d+\.\d+)-desktop\.zip'
     
@@ -31,7 +31,7 @@ class FontAwesome6:
         #   Free for desktop
         # </a>
         webpage = WebPage(url)
-        target_elements = webpage.get_elements('a', 'button text-capitalize tablet:margin-left-xl')
+        target_elements = webpage.content.get_by_role('link', name='Free for desktop').inner_html()
         for element in target_elements:
             if 'href' in element.attrs and self._is_link_matching(element['href']):
                 return element['href']
